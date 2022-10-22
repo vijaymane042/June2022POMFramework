@@ -110,6 +110,11 @@ public class AccountPageTest extends BaseTest {
 	}
 	
 	
+	public void display() {
+		
+	}
+	
+	
 	
 	
 	
