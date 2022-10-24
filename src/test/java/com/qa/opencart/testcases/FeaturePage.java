@@ -6,4 +6,7 @@ public class FeaturePage {
 	public void f1() {
 		System.out.println("Feature 1 file");
 	}
+	public void f2() {
+		System.out.println("Feature 2 file");
+	}
 }
