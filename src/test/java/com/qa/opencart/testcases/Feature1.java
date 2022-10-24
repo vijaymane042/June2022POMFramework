@@ -7,5 +7,10 @@ public class Feature1 {
 		System.out.println("feature1");
 	}
 	
+		public void login() {
+		String userName="Jay";
+		String pwd="Jay@12";
+		
+	}
 	
 }
