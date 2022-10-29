@@ -1,0 +1,121 @@
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530   1) package com.qa.opencart.testcases;
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530   2) 
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530   3) import java.util.ArrayList;
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530   4) 
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530   5) import org.testng.Assert;
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530   6) import org.testng.annotations.BeforeClass;
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530   7) import org.testng.annotations.DataProvider;
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530   8) import org.testng.annotations.Test;
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530   9) 
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  10) import com.qa.opencart.base.BaseTest;
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  11) import com.qa.opencart.constants.AppConstants;
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  12) 
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  13) import io.qameta.allure.Description;
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  14) import io.qameta.allure.Epic;
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  15) import io.qameta.allure.Severity;
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  16) import io.qameta.allure.SeverityLevel;
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  17) import io.qameta.allure.Story;
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  18) 
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  19) @Epic("Epic 101:--This is Account page functionality")
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  20) @Story("US: 201: ---Develope acc page product serach functionality")
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  21) public class AccountPageTest extends BaseTest {
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  22) 
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  23) 	@BeforeClass
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  24) 	public void accSetup() {
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  25) 		accpage = loginpage.doLogin(prop.getProperty("userName"), prop.getProperty("password"));
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  26) 	}
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  27) 
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  28) 	@Description("Verifying the account page title")
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  29) 	@Severity(SeverityLevel.MINOR)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  30) 	@Test(priority = 1)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  31) 	public void accPageTitleTest() {
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  32) 		String accPageTitle = accpage.getAccPageTitle();
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  33) 		Assert.assertEquals(accPageTitle,AppConstants.ACCOUNT_PAGE_TITLE);
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  34) 	}
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  35) 
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  36) 	@Description("Verifying the account page URL")
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  37) 	@Severity(SeverityLevel.NORMAL)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  38) 	@Test(priority = 2)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  39) 	public void accPageURLTest() {
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  40) 		Assert.assertTrue(accpage.getAccPageURL());
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  41) 	}
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  42) 
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  43) 	@Description("Verifying wheather the search field is exist")
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  44) 	@Severity(SeverityLevel.TRIVIAL)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  45) 	@Test(priority = 3)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  46) 	public void accSearchExistTest() {
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  47) 		Assert.assertEquals(accpage.isAccSeacrhExist(), true);
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  48) 		
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  49) 	}
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  50) 
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  51) 	@Description("Verifying wheather the search ICON is exist")
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  52) 	@Severity(SeverityLevel.BLOCKER)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  53) 	@Test(priority = 4)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  54) 	public void accSearchIConExistTest() {
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  55) 		Assert.assertEquals(accpage.isAccSearchIconExist(), true);
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  56) 	}
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  57) 
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  58) 	@Description("Verifying wheather the account page logout button is exist")
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  59) 	@Severity(SeverityLevel.CRITICAL)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  60) 	@Test(priority = 5)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  61) 	public void accLogoutLinkExistTest() {
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  62) 		Assert.assertEquals(accpage.isAccLogoutLinkExist(), true);
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  63) 	}
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  64) 
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  65) 	@Description("Verifying the product header test")
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  66) 	@Severity(SeverityLevel.NORMAL)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  67) 	@Test(priority = 6)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  68) 	public void accHeaderListTest() {
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  69) 	ArrayList<String> actHeaderList=accpage.getAccPageHeaderList();
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  70) 	System.out.println("Acc header list is :" +actHeaderList);
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  71) 	Assert.assertEquals(actHeaderList, AppConstants.ACCONT_PAGE_SECTION_HEADER);
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  72) 	}
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  73) 	
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  74) 	@DataProvider
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  75) 	public Object[][] getSearchData() {
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  76) 		return new Object[][] {{"macbook"},
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  77) 			                   {"imac"},
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  78) 			                   {"samsung"}};
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  79) 		
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  80) 	}
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  81) 	
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  82) 	@Description("Searching the product")
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  83) 	@Severity(SeverityLevel.CRITICAL)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  84) 	@Test(dataProvider = "getSearchData", priority = 7)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  85) 	public void searchCheckTest(String productKey) {
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  86) 		searchResultPage=accpage.performSearch(productKey);
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  87) 		Assert.assertTrue(searchResultPage.isSearchSuccessfully());
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  88) 	}
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  89) 	
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  90) 	@DataProvider
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  91) 	public Object[][] getProductData()
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  92) 	{
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  93) 		return new Object[][] {{"macbook","MacBook"},
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  94) 			                   {"MacBook","MacBook Air"},
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  95) 			                   {"MacBook","MacBook Pro"},
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  96) 			                   {"imac","iMac"},
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  97) 			                   {"samsung","Samsung Galaxy Tab 10.1"},
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  98) 			                   {"samsung","Samsung SyncMaster 941BW"}};
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530  99) 	}
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 100) 	
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 101) 	@Description("Search and open the product that user want to search")
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 102) 	@Severity(SeverityLevel.CRITICAL)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 103) 	@Test(dataProvider = "getProductData", priority = 8)
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 104) 	public void searchTest(String productKey, String mainProductName) {
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 105) 		searchResultPage=accpage.performSearch(productKey);
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 106) 		productInfoPage=searchResultPage.selectProduct(mainProductName);
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 107) 		String headerText=productInfoPage.getProductHeader(mainProductName);
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 108) 		System.out.println("Product header is : "+headerText);
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 109) 		Assert.assertEquals(headerText, mainProductName);
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 110) 	}
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 111) 	
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 112) 	
+2c4a9cf6 (vijaymane042 2022-10-23 01:16:43 +0530 113) 	public void display() {
+2c4a9cf6 (vijaymane042 2022-10-23 01:16:43 +0530 114) 		
+2c4a9cf6 (vijaymane042 2022-10-23 01:16:43 +0530 115) 	}
+2c4a9cf6 (vijaymane042 2022-10-23 01:16:43 +0530 116) 	
+2c4a9cf6 (vijaymane042 2022-10-23 01:16:43 +0530 117) 	
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 118) 	
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 119) 	
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 120) 	
+^3ef07ba (vijaymane042 2022-10-23 00:36:30 +0530 121) }
