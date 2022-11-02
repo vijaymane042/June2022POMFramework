@@ -24,6 +24,7 @@ public class LoginPage {
 	private By login = By.xpath("//input[@type='submit']");
 	private By forgotPWD = By.xpath("//div[@class='form-group']//a[text()='Forgotten Password']");
 	private By register = By.linkText("Register");
+	private By reg = By.linkText("Register");
 	
 	private static final Logger LOG = Logger.getLogger(DriverFactory.class);
 
