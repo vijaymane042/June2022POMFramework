@@ -117,7 +117,8 @@
 					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
 					<suiteXmlFiles>
 					<!--<suiteXmlFile>src/test/resources/test_runners/testng.xml</suiteXmlFile> -->	
-					<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+					<suiteXmlFile>${suiteXmlFiles}</suiteXmlFile>
+					
 					</suiteXmlFiles>
 
 					<argLine>
