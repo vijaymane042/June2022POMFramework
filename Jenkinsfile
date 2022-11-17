@@ -92,7 +92,7 @@ pipeline
                      publishHTML([allowMissing: false,
                                   alwaysLinkToLastBuild: false, 
                                   keepAll: true, 
-                                  reportDir: 'C:\Users\vijay\eclipse-workspace\June2022POMSeries\reports', 
+                                  reportDir: 'C:/Users/vijay/eclipse-workspace/June2022POMSeries/reports', 
                                   reportFiles: 'TestExecutionReport.html', 
                                   reportName: 'HTML Sanity Extent Report', 
                                   reportTitles: ''])
