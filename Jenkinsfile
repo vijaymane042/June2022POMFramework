@@ -37,7 +37,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/vijaymane042/June2022POMFramework.git'
-                    bat "mvn clean test -DtestSuite=src/test/resources/test_runners/testng.xml"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/test_runners/testng.xml"
                     
                 }
             }
@@ -81,7 +81,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/vijaymane042/June2022POMFramework.git'
-                    bat "mvn clean test -DtestSuite=src/test/resources/test_runners/testing_sanity.xml"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/test_runners/testing_sanity.xml"
                     
                 }
             }
