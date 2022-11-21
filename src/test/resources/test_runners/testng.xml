@@ -15,7 +15,8 @@
 			<class name="com.qa.opencart.testcases.LoginPageTest" />
 		</classes>
 	</test> <!-- Test -->
-	<test name="Account Test">
+	
+<test name="Account Test">
 		<classes>
 			<class name="com.qa.opencart.testcases.AccountPageTest" />
 		</classes>

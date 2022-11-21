@@ -4,16 +4,22 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
+
+
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.qa.opencart.errors.AppErrors;
 import com.qa.opencart.exception.FrameworkException;
@@ -24,6 +30,7 @@ public class DriverFactory {
 
 	public WebDriver driver;
 	public Properties prop;
+	public OptionsManager optionsManager;
 
 	private static final Logger LOG = Logger.getLogger(DriverFactory.class);
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
@@ -37,24 +44,40 @@ public class DriverFactory {
 	 * @return this will return the web driver
 	 */
 	public WebDriver initDriver(Properties prop) {
-		String browserName = prop.getProperty("browserName").toLowerCase();
+		String browserName = prop.getProperty("browser").toLowerCase();
 		//String browserName = System.getProperty("env");
 		LOG.info("Running the browser :" + browserName);
 		highlight = prop.getProperty("highlight").trim();
-		OptionsManager optionsManager = new OptionsManager(prop);
+		 optionsManager = new OptionsManager(prop);
 
 		if (browserName.equals("chrome")) {
-			WebDriverManager.chromedriver().setup();
-			// driver = new ChromeDriver();
-			tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
+			
+			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
+				// remote run:
+				init_remoteDriver("chrome");
+			} else {
+				// local run:
+				WebDriverManager.chromedriver().setup();
+				tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
+			}
 		} else if (browserName.equals("firefox")) {
-			WebDriverManager.firefoxdriver().setup();
-			// driver = new FirefoxDriver();
-			tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
+			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
+				// remote run:
+				init_remoteDriver("firefox");
+			} else {
+				// local run:
+				WebDriverManager.firefoxdriver().setup();
+				tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
+			}
 		} else if (browserName.equals("edge")) {
-			WebDriverManager.edgedriver().setup();
-			// driver = new EdgeDriver();
-			tlDriver.set(new EdgeDriver(optionsManager.getEdgeOptions()));
+			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
+				// remote run:
+				init_remoteDriver("edge");
+			} else {
+				// local run:
+				WebDriverManager.edgedriver().setup();
+				tlDriver.set(new EdgeDriver(optionsManager.getEdgeOptions()));
+			}
 		} else {
 			System.out.println("Please pass the right browser : " + browserName);
 			LOG.error("pass the right borwser :" + browserName);
@@ -64,6 +87,39 @@ public class DriverFactory {
 		getDriver().manage().window().maximize();
 		getDriver().get(prop.getProperty("URL"));
 		return getDriver();
+	}
+/**
+ * remote execution
+ */
+	private void init_remoteDriver(String browser) {
+	
+		System.out.println("Running test cases on remote GRID machine....with browser: " + browser);
+
+		if (browser.equals("chrome")) {
+			try {
+				tlDriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")),optionsManager.getChromeOptions()));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		} 
+		
+		else if (browser.equals("firefox")) {
+			try {
+				tlDriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")),optionsManager.getFirefoxOptions()));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		else if (browser.equals("edge")) {
+			try {
+				tlDriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")), optionsManager.getEdgeOptions()));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("Please pass the right browser for remote exution...." + browser);
+		}
 	}
 
 	/**
