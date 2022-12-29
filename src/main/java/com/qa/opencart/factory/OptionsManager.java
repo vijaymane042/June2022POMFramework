@@ -29,14 +29,14 @@ public class OptionsManager {
 		if(Boolean.parseBoolean(prop.getProperty("incognito"))) {
 			chromeOptions.addArguments("--incognito");
 		}
-		if(Boolean.parseBoolean(prop.getProperty("remote"))) {
-			String browserVersion=prop.getProperty("browserversion");
-			chromeOptions.setBrowserVersion(browserVersion);
-			chromeOptions.setPlatformName("linux");
-			chromeOptions.setCapability("enableVNC", true);
-			chromeOptions.setCapability("name", "OpenAppTest -" + prop.getProperty("testname"));
-			
-		}
+//		if(Boolean.parseBoolean(prop.getProperty("remote"))) {
+//			String browserVersion=prop.getProperty("browserversion");
+//			chromeOptions.setBrowserVersion(browserVersion);
+//			chromeOptions.setPlatformName("linux");
+//			chromeOptions.setCapability("enableVNC", true);
+//			chromeOptions.setCapability("name", "OpenAppTest -" + prop.getProperty("testname"));
+//			
+//		}
 		return chromeOptions;
 	}
 	
@@ -53,13 +53,13 @@ public class OptionsManager {
 			//firefoxOptions.addArguments("-private");
 			firefoxOptions.addArguments("-private-window");
 		}
-		if(Boolean.parseBoolean(prop.getProperty("remote"))) {
-			String browserVersion=prop.getProperty("browserversion");
-			firefoxOptions.setBrowserVersion(browserVersion);
-			firefoxOptions.setPlatformName("linux");
-			firefoxOptions.setCapability("enableVNC", true);
-			
-		}
+//		if(Boolean.parseBoolean(prop.getProperty("remote"))) {
+//			String browserVersion=prop.getProperty("browserversion");
+//			firefoxOptions.setBrowserVersion(browserVersion);
+//			firefoxOptions.setPlatformName("linux");
+//			firefoxOptions.setCapability("enableVNC", true);
+//			
+//		}
 		return firefoxOptions;
 	}
 	

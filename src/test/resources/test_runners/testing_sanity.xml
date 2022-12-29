@@ -11,17 +11,11 @@
 			class-name="com.qa.opencart.listeners.AnnotationTransformer" />
 	</listeners>
 	<test name="Login Test_chrome_79">
-	<parameter name="browser" value="chrome"/>
-	<parameter name="browserversion" value="79.0"/>
-	<parameter name="testname" value="LoginPageTest"/>
 		<classes>
 			<class name="com.qa.opencart.testcases.LoginPageTest" />
 		</classes>
 	</test> <!-- Test -->
 	<test name="Account Test_chrome_89">
-	<parameter name="browser" value="chrome"/>
-	<parameter name="browserversion" value="89.0"/>
-	<parameter name="testname" value="AccountPageTest"/>
 		<classes>
 			<class name="com.qa.opencart.testcases.AccountPageTest" />
 		</classes>
