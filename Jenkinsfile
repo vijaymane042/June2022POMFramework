@@ -92,7 +92,7 @@ pipeline
                      publishHTML([allowMissing: false,
                                   alwaysLinkToLastBuild: false, 
                                   keepAll: true, 
-                                  reportDir: 'C:/Users/vijay/.jenkins/jobs/June2022POMPL/builds/15/htmlreports/HTML_20Sanity_20Extent_20Report', 
+                                  reportDir: '/June2022POMSeries/reports', 
                                   reportFiles: 'TestExecutionReport.html', 
                                   reportName: 'HTML Sanity Extent Report', 
                                   reportTitles: ''])
